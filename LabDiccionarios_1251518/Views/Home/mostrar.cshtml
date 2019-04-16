@@ -1,15 +1,11 @@
-﻿@using LabDiccionarios_1251518.Models
-@model IEnumerable<Album>
+﻿@model LabDiccionarios_1251518.Models.Album[]
 @{
     Layout = null;
 }
-
-<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Mostrar Inventario</title>
     <style type="text/css">
         body {
             font-family: Arial;
@@ -43,24 +39,23 @@
     </style>
 </head>
 <body>
-
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <p><h2>Por favor, seleccione el archivo</h2></p>
-        <input type="file" name="postedFile" />
-        <input name="cargar" type="submit" value="Cargar" />
-    }
-    @if (Model.Count() > 0) {
-        <p>El Archivo ha sido cargado exitosamente</p>
-        
-        <div>
-            <form action="~/Home/mostrar">
-                <input type="submit" value="Mostrar el formato del album" />
-            </form>
-            <form action="~/Home/mostrarAlbum" method="post" aling="right">
-                <input type="submit" value="Mostrar mi album" />
-            </form>
-        </div>
-    }
+    <h2><center>Album Oficial UEFA Champions League</center></h2>
+    <form action="~/Home/index">
+        <input type="submit" value="Volver" />
+    </form>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Id</th>
+            <th>Equipo</th>
+            <th>Nombre</th>
+        </tr>
+        @for (int i = 0; i < Model.Length; i++)
+        {
+            <tr>
+                <td>@Model[i].id</td>
+                <td>@Model[i].equipo</td>
+                <td>@Model[i].nombre</td>
+            </tr>
+        }
+    </table>
 </body>
-</html>
